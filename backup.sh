@@ -1,9 +1,7 @@
 #!/bin/bash
-#Script de backup de banco de dados Mysql.
-#Leonardo Macedo Cerqueira - leonardo.macedo.c@gmail.com
 
-DATA=$(date +"%d-%m-%Y")	 #definiÁ„o de vari·vel para a data dos backups. 
-DEST="/home/gustavo/temp/backup"	 #pasta de destino do backup.
+DATA=$(date +"%d-%m-%Y")	 #defini√ß√£o de vari√°vel para a data dos backups. 
+DEST="./backup"	 #pasta de destino do backup.
 DESTDAY="${DEST}/bkp-mysql-$DATA/"	#pasta de backup diario
 
 # Login do usuario root do mysql:
@@ -37,8 +35,4 @@ echo 'Apagando backups antigos. Apaga PASTA de backups de 3 dias.'
 DATAREMOVE=$(date -d "3 day ago" +"%d-%m-%Y")
 /bin/rm -rf ${DEST}/bkp-mysql-$DATAREMOVE
 echo 'Backup na pasta '$DESTDAY
-
-#Enviando para Dreamhost (espelho de backup)
-#echo 'Enviando para servidor Dreamhost (espelho de backup)'
-#sshpass -p 'carasebocas2010' scp -r $DESTDAY gustavodini@208.113.224.4:/home/gustavodini/pro-treino-backups
 
